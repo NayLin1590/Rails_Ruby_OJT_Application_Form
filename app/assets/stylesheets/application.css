@@ -1,0 +1,203 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+body {
+  background-color: rgba(0, 0, 255, 0.2);
+  font-size: 18px;
+}
+.container {
+  width: 75%;
+  margin: 0 auto;
+  min-width: 640px;
+}
+.clearFix::after {
+  content: "";
+  clear: both;
+  display: block;
+  visibility: hidden;
+  font-size: 0;
+  height: 0;
+}
+h2 {
+  font-size: 22px;
+  text-align: center;
+  background-color: #4c3fff;
+  padding: 10px 0;
+  color: #fff;
+}
+.sec h3 {
+  font-size: 18px;
+  font-weight: 600;
+  padding:5px 0;
+  background-color: #FCE5CD;
+
+}
+.form-group {
+  width: 100%;
+  margin-bottom: 1px;
+  background-color: #f3f3f3;
+}
+textarea {
+  resize: none; 
+  padding-left: 5px;
+  height: 4em;
+}
+input {
+  padding: 3px;
+  border: 1px solid rgba(165, 164, 164, 0.7);
+}
+textarea:focus, input:focus{
+  outline: none;
+}
+.sec {
+  margin-top: 5px;
+} 
+.form-group .main_label{
+  width: 40%;
+  display: block;
+  float: left;
+  padding-left: 10px;
+} 
+.form-group .main_side {
+  width: 60%;
+  display: block;
+  float: left;
+  border: 1px solid rgba(165, 164, 164, 0.5);
+  background-color: #fff; 
+}
+.main_side .upload_profile_btn {
+  border: 1px solid gray;
+  padding: 2px 5px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 2px 0;
+  cursor: pointer;
+}
+.main_side .upload_profile_btn:hover {
+  border-color:black;
+}
+.main_side .profile_upload {
+  display: none;
+  height: 0;
+}
+/* .main_side .nrc_item {
+  width: 25%;
+  float: left;
+  display: block;
+}
+.nrc_item input {
+  display: block;
+  width: 100%;
+}
+.main_side .nrc_photo_item {
+  width: 50%;
+  display: block;
+  float: left;
+}
+.main_side .upload_front_btn {
+  border: 1px solid gray;
+  padding: 2px 5px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 2px 0;
+  cursor: pointer;
+}
+.main_side .upload_front_btn:hover {
+  border-color:black;
+}
+.main_side .front_upload {
+  display: none;
+  height: 0;
+} */
+.main_side .phone_item {
+  width: 100%;
+  margin: 3px 0 3px 0;
+}
+.phone_item input {
+  width: 40%;
+}
+.phone_item .remove_phone {
+  margin-left: 5px;
+}
+.main_side .edu_group {
+  width: 100%;
+  margin-bottom: 5px;
+}
+.main_side .edu_group .edu_label {
+  background-color: #CFE2F3;
+  width: 100%;
+  display: block;
+}
+.main_side .edu_group .edu {
+  width: 100%;
+}
+.edu_group .edu .edu_item {
+  width: 33%;
+  display: block;
+  float: left;
+}
+.edu_item input {
+  width: 98%;
+}
+.main_side .pros_label {
+  width: 20%;
+  display: block;
+  background-color: #CFE2F3;
+  text-align: center;
+  float: left;
+}
+.main_side .plang_item {
+  width: 100%;
+  margin-bottom: 3px;
+}
+.plang_item input {
+  width: 20%;
+  float: left;
+}
+.foreignLang .main_side label {
+  width: 100%;
+  display: block;
+  background-color: #CFE2F3;
+}
+.foreignLang .main_side input {
+  width: 40%;
+  margin-bottom: 3px;
+}
+.main_side .hje {
+  text-align: lefts;
+}
+.btn-group {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #f3f3f3;
+}
+.btn-group input {
+  border: 1px solid gray;
+  border-radius: 3px;
+  width: 150px;
+}
+input[type="date"] {
+  width: 40%;
+}
+input[type="reset"] {
+  background-color: #FCE5CD;
+  margin-right: 20px;
+}
+input[type="submit"] {
+  background-color: #CFE2F3;
+}
+.jobexp {
+  display: none;
+}
