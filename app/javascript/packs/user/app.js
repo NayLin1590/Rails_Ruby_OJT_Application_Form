@@ -1,68 +1,70 @@
 $(document).ready(function () {
-    var maxField = 4; //Input fields increment limitation
+    var maxField = 2;
 
     // Phone number Field   
-    var addPhone = $('.add_phone'); //Add button selector
-    var phoneWrapper = $('.phone_wrapper'); //Input field wrapper
-    var fieldHTML = '<div class="phone_item"><input type="text" name="phone" value=""/><a href="javascript:void(0);" class="remove_phone"><i class="fas fa-minus"></i></a></div>'; //New input field html 
-    var x = 1; //Initial field counter is 1
+    var addPhone = $('.add_phone');
+    var phoneWrapper = $('.phone_wrapper');
+    var fieldHTML = '<div class="phone_item"><input type="number" name="applicant[phone_no2]" value=""/><a href="javascript:void(0);" class="remove_phone"><i class="fas fa-minus"></i></a></div>'; //New input field html 
+    var x = 1; 
 
-    //Once add button is clicked
     $(addPhone).click(function () {
-        //Check maximum number of input fields
         if (x < maxField) {
-            x++; //Increment field counter
-            $(phoneWrapper).append(fieldHTML); //Add field html
+            x++;
+            $(phoneWrapper).append(fieldHTML); 
         }
     });
 
-    //Once remove button is clicked
     $(phoneWrapper).on('click', '.remove_phone', function (e) {
         e.preventDefault();
-        $(this).parent('div').remove(); //Remove field html
-        x--; //Decrement field counter
+        $(this).parent('div').remove(); 
+        x--;
     });
 
     //   Programming Language Field
-    var addPlang = $('.add_plang'); //Add button selector
-    var plangWrapper = $('.plang_wrapper'); //Input field wrapper
-    var pfieldHTML = '<div class="plang_item clearFix"><input type="text" name="plang" value="" placeholder="Ruby"/><input type="text" name="plevel" value="" placeholder="A"/><a href="javascript:void(0);" class="remove_plang"><i class="fas fa-minus"></i></a></div>'; //New input field html 
+    var count=1;
+    var addPlang = $('.add_plang'); 
+    var plangWrapper = $('.plang_wrapper'); 
+     //New input field html 
     var p = 1;
-    //Once add button is clicked
     $(addPlang).click(function () {
-        //Check maximum number of input fields
-        if (p < maxField) {
-            p++; //Increment field counter
-            $(plangWrapper).append(pfieldHTML); //Add field html
+        if (p < 5) {
+            var pfieldHTML = '<div class="plang_item clearFix"><input type="text" name="applicant[programming[][language]]" value="" placeholder="Java"/><input type="text" name="applicant[programming[][level]]" value="" placeholder="A"/><a href="javascript:void(0);" class="remove_plang"><i class="fas fa-minus"></i></a></div>';
+            p++; 
+            count++;
+            $(plangWrapper).append(pfieldHTML);
         }
     });
 
-    //Once remove button is clicked
     $(plangWrapper).on('click', '.remove_plang', function (e) {
         e.preventDefault();
-        $(this).parent('div').remove(); //Remove field html
-        p--; //Decrement field counter
+        $(this).parent('div').remove(); 
+        // $(".plang_wrapper div:nth-last-of-type(1)").remove();
+        p--;
+        count--;
     });
 
 
     // Profile Picture
-    $("#profile_picture").change(function () {
+    var profilePhoto = $('.profile_upload');
+    $(profilePhoto).change(function () {
         filename = this.files[0].name;
-        $('.upload_profile_btn').html(filename);
+        $('.img_name').html(filename);
+        // $('.profile_upload').attr("value",filename);
     });
 
     // checkbox checked
-    $("#hasjobexp").change(function() {
-        if(this.checked) {
-            $(".jobexp").css("display","block");
-        }else {
-            $(".jobexp").css("display","none");
+    var hasJobExp = $('.has_job_exp'); 
+    $(hasJobExp).click(function () {
+        if (this.checked) {
+            $(".jobexp").css("display", "block");
+        } else {
+            $(".jobexp").css("display", "none");
         }
     });
-    
+
     // reset 
-    $(".reset").click(function() {
+    $(".reset").click(function () {
         window.location.reload();
-    })
+    });
 
 });
