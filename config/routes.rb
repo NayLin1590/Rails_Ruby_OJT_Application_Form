@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   get 'applicants/applicants'
   root 'applicants#applicants'
   post '/confirm' , to: 'applicants#confirm'
-
+  get '/confirm' , to: 'applicants#confirmData'
+  post '/saveData' , to: 'applicants#saveData'
   # testing
   get '/test' , to: 'test#test'
   post '/test' , to: 'test#test'

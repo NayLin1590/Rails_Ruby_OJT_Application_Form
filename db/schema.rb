@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_19_044148) do
+ActiveRecord::Schema.define(version: 2021_08_30_033739) do
 
   create_table "applicants", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "profile_photo", null: false
     t.timestamp "dob"
-    t.integer "phone_no1", null: false
-    t.integer "phone_no2"
+    t.bigint "phone_no1", null: false
+    t.string "phone_no2"
     t.string "email"
     t.string "current_address", null: false
     t.string "hometown_address"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_08_19_044148) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "file_upload"
   end
 
 end

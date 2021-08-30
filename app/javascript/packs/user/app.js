@@ -54,6 +54,11 @@ $(document).ready(function () {
 
     // checkbox checked
     var hasJobExp = $('.has_job_exp'); 
+    if ($(hasJobExp).checked){
+        console.log("checked")
+    }else{
+        console.log("not checked")
+    }
     $(hasJobExp).click(function () {
         if (this.checked) {
             $(".jobexp").css("display", "block");

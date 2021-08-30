@@ -1,5 +1,10 @@
 <div class="container">
-  <%# <%= @user %> 
+<% if @user != nil %>
+  <%= @user[:name] %>
+  <%= @user[:email] %>
+  <%= @user[:file_upload] %>
+  
+<% end %>
   <%= form_with model: @user, url: '/check' do |form| %>
   <% @user.errors.full_messages.each do |item| %>
     <div class="error_msg"> <%= @user.errors[:email][0] %></div>
@@ -11,11 +16,11 @@
 
   <div class="field">
     <%= form.label :email %>
-    <%= form.email_field "email[0]"%>
+    <%= form.email_field "email"%>
   </div>
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.email_field "email[1]"%>
+   <div class="field">
+    <%= form.label :file_upload %>
+    <%= form.file_field "file_upload"%>
   </div>
   <div class="actions">
     <%= form.submit %>

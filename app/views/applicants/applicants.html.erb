@@ -8,9 +8,9 @@
     <div class="form-group clearFix">
       <%= form.label :name,  "Name" , class: "main_label"%>
       <div class="main_side">
-        <%= form.text_field :name , placeholder:"Mg Mg.."%>
+        <%= form.text_field :name , class: "wd_full" %>
         <% if @applicant.errors[:name].any? %>
-          <div class="error_msg">Name <%= @applicant.errors[:name].to_sentence  %></div>
+        <div class="error_msg">Name <%= @applicant.errors[:name].to_sentence  %></div>
         <% end %>
       </div>
     </div>
@@ -21,9 +21,9 @@
         <%= form.label :profile_photo, "Upload Profile" , class:"upload_profile_btn"%>
         <span class="img_name"></span>
         <%= form.file_field :profile_photo, class:"profile_upload" , accept:'image/*'%>
-        <% if @applicant.errors[:profile_photo].any? %>
-          <div class="error_msg">Profile Picture <%= @applicant.errors[:profile_photo].to_sentence  %></div>
-        <% end %>
+        <% if @applicant.errors.any? %>
+        <div class="error_msg">please select profile photo again!</div>
+        <% end %>  
       </div>
     </div>
     <%# dob %>
@@ -32,7 +32,7 @@
       <div class="main_side">
         <%= form.date_field :dob %>
         <% if @applicant.errors[:dob].any? %>
-          <div class="error_msg">DOB <%= @applicant.errors[:dob].to_sentence  %></div>
+        <div class="error_msg">DOB <%= @applicant.errors[:dob].to_sentence  %></div>
         <% end %>
       </div>
     </div>
@@ -47,10 +47,9 @@
             <a href="javascript:void(0);" class="add_phone phone_icon" title="Add field">
               <i class="fas fa-plus"></i>
             </a>
-            
           </div>
           <% if @applicant.errors[:phone_no1].any? %>
-            <div class="error_msg"> Phone <%= @applicant.errors[:phone_no1].to_sentence  %></div>
+          <div class="error_msg"> Phone <%= @applicant.errors[:phone_no1].to_sentence  %></div>
           <% end %>
         </div>
       </div>
@@ -61,28 +60,28 @@
       <div class="main_side">
         <%= form.email_field :email, class: "wd_full" %>
         <% if @applicant.errors[:email].any? %>
-          <div class="error_msg"> Email <%= @applicant.errors[:email].to_sentence  %></div>
+        <div class="error_msg"> Email <%= @applicant.errors[:email].to_sentence  %></div>
         <% end %>
       </div>
-      
+
     </div>
     <%# Current Address %>
     <div class="form-group clearFix">
-      <%= form.label :currentAddress, "Current Address", class: "main_label"%>
+      <%= form.label :current_address, "Current Address", class: "main_label"%>
       <div class="main_side">
-        <%= form.text_area :currentAddress, class: "wd_full" %>
-        <% if @applicant.errors[:currentAddress].any? %>
-          <div class="error_msg"> currentAddress <%= @applicant.errors[:currentAddress].to_sentence  %></div>
+        <%= form.text_area :current_address, class: "wd_full" %>
+        <% if @applicant.errors[:current_address].any? %>
+        <div class="error_msg">please fill currentAddress</div>
         <% end %>
       </div>
     </div>
     <%# Hometown Address %>
     <div class="form-group clearFix">
-      <%= form.label :hometownAddress, "Hometown Address", class: "main_label"%>
+      <%= form.label :hometown_address, "Hometown Address", class: "main_label"%>
       <div class="main_side">
-        <%= form.text_area :hometownAddress, class: "wd_full" %>
-        <% if @applicant.errors[:hometownAddress].any? %>
-          <div class="error_msg"> Hometown <%= @applicant.errors[:hometownAddress].to_sentence  %></div>
+        <%= form.text_area :hometown_address, class: "wd_full" %>
+        <% if @applicant.errors[:hometown_address].any? %>
+        <div class="error_msg">please fill Hometown Address<%= @applicant.errors[:hometownAddress].to_sentence  %></div>
         <% end %>
       </div>
     </div>
@@ -137,8 +136,11 @@
       </div>
       <%# Diploma Name %>
       <div class="form-group clearFix">
-        <%= form.label :diplamaName , "Diploma Name", class: "main_label"%>
-        <%= form.text_field :diplamaName , class:"main_side"%>
+        <%= form.label :diplomaName , "Diploma Name", class: "main_label"%>
+        <div class="main_side">
+          <%= form.text_field :diplomaName , class: "wd_full"%>
+        </div>
+
       </div>
       <%# Other Certificates %>
       <div class="form-group clearFix">
@@ -196,7 +198,12 @@
     <div class="form-group clearFix">
       <%= form.label :hasjobexp ,"Has Job Experience" , class:"main_label"%>
       <div class="main_side">
-        <%= form.check_box :hasjobexp , class:"has_job_exp"%>
+      <% if @hasjobexp == 1 %>
+        <%= form.check_box :hasjobexp , class:" has_job_exp" , checked:"checked"%>
+      <% else %>
+        <%= form.check_box :hasjobexp , class:" has_job_exp"%>
+      <% end %>
+      
       </div>
     </div>
     <div class="jobexp">
@@ -213,13 +220,9 @@
       <%# Total Experinence Year %>
       <div class="form-group clearFix">
         <%= form.label :total_exp_year ,"Total Experience Year" , class:"main_label"%>
-        <%= form.text_field :total_exp_year, class:"main_side"%>
+        <%= form.number_field :total_exp_year, class:"main_side"%>
       </div>
-      <%# Comment %>
-      <div class="form-group clearFix">
-        <%= form.label :comment ,"Comment" , class:"main_label"%>
-        <%= form.text_area :comment, class:"main_side"%>
-      </div>
+
     </div>
   </div>
   <%# button %>
@@ -230,3 +233,6 @@
   <% end %>
 </div>
 <%= javascript_pack_tag 'user/app' %>
+
+
+
