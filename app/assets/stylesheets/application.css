@@ -123,10 +123,6 @@ input:focus {
   width: 40%;
 }
 
-.phone_item .remove_phone {
-  margin-left: 5px;
-}
-
 .main_side .edu_group {
   width: 100%;
   margin-bottom: 5px;
@@ -215,15 +211,26 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-.jobexp {
-  display: none;
+.need {
+  color: red;
+  display: inline-block;
+  font-size: 20px;
 }
+
+.main_label .field_with_errors {
+  display: inline-block;
+}
+.edu_item .field_with_errors {
+  display: inline-block;
+}
+
 footer {
   padding: 15px 0;
   text-align: center;
   margin-top: 10px;
   background-color: rgba(0, 0, 255, 0.2);
 }
+
 footer p {
   font-size: 12px;
   color: #fff;
@@ -233,6 +240,7 @@ footer p {
   color: red;
   font-size: 12px;
 }
+
 .wd_full {
   width: 100%;
   border-right: none; 
@@ -244,27 +252,33 @@ footer p {
   font-size: 18px;
   font-weight: 700;
 }
+
 .view .main_side input {
   border: none;
-  /* border-left: 1px solid rgba(128, 128, 128, 0.247); */
 }
+
 .view .profile_img {
   width: 15vh;
   height: 12vh;
 }
+
 .view .profile_name {
   display: none;
 }
+
 .view .main_side {
   background-color: rgba(255, 255, 0, 0);
 }
+
 .view .main_side input{
   background-color: #ff000000;
 }
+
 .view .main_side textarea{
   background-color: #ff000000;
   border: none;
 }
+
 .cancelBtn {
   border: 1px solid gray;
   border-radius: 3px;
@@ -274,6 +288,7 @@ footer p {
   margin-right: 20px;
   padding: 2.5px 0;
 }
+
 .view .main_side .pros_label {
   width: 100%;
 }

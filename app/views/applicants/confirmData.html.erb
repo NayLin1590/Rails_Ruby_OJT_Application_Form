@@ -1,30 +1,28 @@
 <div class="container">
-  <%# Appliction form %>
   <%= form_with(model: @applicant , url: "/saveData", local: true) do |form| %>
   <%# Personal Information %>
-  <%= @applicant[:diploma_name]%>
   <div class="sec view">
     <h3>Personal Information</h3>
     <%# Name %>
     <div class="form-group clearFix">
       <%= form.label :name,  "Name" , class: "main_label"%>
       <div class="main_side">
-        <%= form.text_field :name , value:@applicant[:name], class: "wd_full" , readonly:"true"%>
+        <%= form.text_field :name , value:@applicant.name, class: "wd_full" , readonly:"true"%>
       </div>
     </div>
     <%# Profile Picture %>
     <div class="form-group clearFix">
       <%= form.label :profile_pict_lbl , "Profile Picture", class: "main_label"%>
       <div class="main_side">
-        <%= image_tag @applicant[:profile_photo] , class: "profile_img"%>
-        <%= form.text_field :profile_photo, value:@applicant[:profile_photo] , class: "profile_name"%>
+        <%= image_tag @file_path , class: "profile_img"%>
+        <%= form.text_field :profile_photo, value: @file_path, class: "profile_name"%>
       </div>
     </div>
     <%# dob %>
     <div class="form-group clearFix">
       <%= form.label :dob, "Date Of Birth", class: "main_label"%>
       <div class="main_side">
-        <%= form.text_field :dob ,value:@applicant[:dob].strftime('%Y-%m-%d'), class: "wd_full" , readonly:"true"%>
+        <%= form.text_field :dob ,value:@applicant.dob.strftime('%Y-%m-%d'), class: "wd_full" , readonly:"true"%>
       </div>
     </div>
     <%# Phone %>
@@ -34,13 +32,12 @@
         <%# phone add and remove %>
         <div class="phone_wrapper">
           <div class="phone_item clearFix">
-            <%= form.text_field :phone_no1 , value:@applicant[:phone_no1] , readonly:"true"%>
-            <% if @applicant[:phone_no2]!= nil %>
-              <br>
-              <%= form.text_field :phone_no2 , value:@applicant[:phone_no2] , readonly:"true"%>
+            <%= form.text_field :phone_no1 , value:@applicant.phone_no1 , readonly:"true"%>
+            <% if @applicant.phone_no2!= nil %>
+            <br>
+            <%= form.text_field :phone_no2 , value:@applicant.phone_no2 , readonly:"true"%>
             <% end %>
           </div>
-
         </div>
       </div>
     </div>
@@ -48,154 +45,141 @@
     <div class="form-group clearFix">
       <%= form.label :email, "Email", class: "main_label"%>
       <div class="main_side">
-        <%= form.email_field :email, class: "wd_full" , value:@applicant[:email]  , readonly:"true"%>
+        <%= form.email_field :email, class: "wd_full" , value:@applicant.email  , readonly:"true"%>
       </div>
-
     </div>
     <%# Current Address %>
     <div class="form-group clearFix">
       <%= form.label :current_address, "Current Address", class: "main_label"%>
       <div class="main_side">
-        <%= form.text_area :current_address, class: "wd_full" , value: @applicant[:current_address] , readonly:"true"%>
-
+        <%= form.text_area :current_address, class: "wd_full" , value: @applicant.current_address , readonly:"true"%>
       </div>
     </div>
     <%# Hometown Address %>
     <div class="form-group clearFix">
       <%= form.label :hometown_address, "Hometown Address", class: "main_label"%>
       <div class="main_side">
-        <%= form.text_area :hometown_address, class: "wd_full", value:@applicant[:hometown_address] , readonly:"true" %>
+        <%= form.text_area :hometown_address, class: "wd_full", value:@applicant.hometown_address.empty? ? "-" : @applicant.hometown_address , readonly:"true" %>
       </div>
     </div>
   </div>
-
   <%# Education Background %>
   <div class="sec view">
     <h3>Education Background</h3>
-    <div>
-      <%# Education Level %>
-      <div class="form-group clearFix">
-        <%= form.label :eduLevel, "Education Level", class: "main_label" %>
-        <div class="main_side">
-
-          <%# Bachelor %>
-          <div class="edu_group">
-            <%= form.label :bachelor ,"Bachelor", class:"edu_label"%>
-            <div class="edu clearFix">
-              <div class="edu_item">
-                <%= form.label :bachelor_university ,"University"%>
-                <%= form.text_field :bachelor_university , value:@applicant[:bachelor_university].empty? ? "-" : @applicant[:bachelor_university] , readonly:"true" %>
-              </div>
-              <div class="edu_item">
-                <%= form.label :bachelor_year ,"Year"%>
-                <%= form.text_field :bachelor_year , value:@applicant[:bachelor_year].empty? ? "-" : @applicant[:bachelor_year] , readonly:"true" %>
-              </div>
-              <div class="edu_item">
-                <%= form.label :bachelor_degree ,"Degree"%>
-                <%= form.text_field :bachelor_degree , value:@applicant[:bachelor_degree].empty? ? "-" : @applicant[:bachelor_degree] , readonly:"true"  %>
-              </div>
+    <%# Education Level %>
+    <div class="form-group clearFix">
+      <%= form.label :eduLevel, "Education Level", class: "main_label" %>
+      <div class="main_side">
+        <%# Bachelor %>
+        <div class="edu_group">
+          <%= form.label :bachelor ,"Bachelor", class:"edu_label"%>
+          <div class="edu clearFix">
+            <div class="edu_item">
+              <%= form.label :bachelor_university ,"University"%>
+              <%= form.text_field :bachelor_university , value:@applicant.bachelor_university.empty? ? "-" : @applicant.bachelor_university , readonly:"true" %>
+            </div>
+            <div class="edu_item">
+              <%= form.label :bachelor_year ,"Year"%>
+              <%= form.text_field :bachelor_year , value:@applicant.bachelor_year.empty? ? "-" : @applicant.bachelor_year , readonly:"true" %>
+            </div>
+            <div class="edu_item">
+              <%= form.label :bachelor_degree ,"Degree"%>
+              <%= form.text_field :bachelor_degree , value:@applicant.bachelor_degree.empty? ? "-" : @applicant.bachelor_degree , readonly:"true"  %>
             </div>
           </div>
-          <%# Master %>
-          <div class="edu_group">
-            <%= form.label :master ,"Master" , class:"edu_label"%>
-            <div class="edu clearFix">
-              <div class="edu_item">
-                <%= form.label :master_university ,"University"%>
-                <%= form.text_field :master_university , value:@applicant[:master_university].empty? ? "-" : @applicant[:master_university] , readonly:"true"  %>
-              </div>
-              <div class="edu_item">
-                <%= form.label :master_year ,"Year"%>
-                <%= form.text_field :master_year , value:@applicant[:master_year].empty? ? "-" : @applicant[:master_year] , readonly:"true"  %>
-              </div>
-              <div class="edu_item">
-                <%= form.label :master_degree ,"Degree"%>
-                <%= form.text_field :master_degree , value:@applicant[:master_degree].empty? ? "-" : @applicant[:master_degree] , readonly:"true" %>
-              </div>
+        </div>
+        <%# Master %>
+        <div class="edu_group">
+          <%= form.label :master ,"Master" , class:"edu_label"%>
+          <div class="edu clearFix">
+            <div class="edu_item">
+              <%= form.label :master_university ,"University"%>
+              <%= form.text_field :master_university , value:@applicant.master_university.empty? ? "-" : @applicant.master_university , readonly:"true"  %>
+            </div>
+            <div class="edu_item">
+              <%= form.label :master_year ,"Year"%>
+              <%= form.text_field :master_year , value:@applicant.master_year.empty? ? "-" : @applicant.master_year , readonly:"true"  %>
+            </div>
+            <div class="edu_item">
+              <%= form.label :master_degree ,"Degree"%>
+              <%= form.text_field :master_degree , value:@applicant.master_degree.empty? ? "-" : @applicant.master_degree , readonly:"true" %>
             </div>
           </div>
         </div>
       </div>
-      <%# Diploma Name %>
-      <div class="form-group clearFix">
-        <%= form.label :diploma_name , "Diploma Name", class: "main_label"%>
-        <div class="main_side">
-          <%= form.text_field :diploma_name , class: "wd_full" , value: @applicant[:diploma_name].empty? ? "-" : @applicant[:diploma_name] , readonly:"true"%>
-        </div>
-        
+    </div>
+    <%# Diploma Name %>
+    <div class="form-group clearFix">
+      <%= form.label :diploma_name , "Diploma Name", class: "main_label"%>
+      <div class="main_side">
+        <%= form.text_field :diploma_name , class: "wd_full" , value: @applicant.diploma_name.empty? ? "-" : @applicant.diploma_name , readonly:"true"%>
       </div>
-      <%# Other Certificates %>
-      <div class="form-group clearFix">
-        <%= form.label :certificate ,"Other Certificates", class: "main_label"%>
-        <div class="main_side">
-          <%= form.text_field :certificate , class: "main_side", value: @applicant[:certificate].empty? ? "-" : @applicant[:certificate] , readonly:"true" %>
-        </div>
-       
+    </div>
+    <%# Other Certificates %>
+    <div class="form-group clearFix">
+      <%= form.label :certificate ,"Other Certificates", class: "main_label"%>
+      <div class="main_side">
+        <%= form.text_field :certificate , class: "main_side", value: @applicant.certificate.empty? ? "-" : @applicant.certificate , readonly:"true" %>
       </div>
-      <%# Programming Skill %>
-      <div class="form-group clearFix">
-        <%= form.label :programmingskill , "Programming Skill", class: "main_label" %>
-        <div class="main_side">
-          <div class="clearFix">
-            <%= form.label :programming ,"Language:Level" , class:"pros_label"%>
-            <%= form.text_field :programming , value:@applicant[:programming].empty? ? "-" : @applicant[:programming] , readonly:"true" %>
-          </div>
+    </div>
+    <%# Programming Skill %>
+    <div class="form-group clearFix">
+      <%= form.label :programmingskill , "Programming Skill", class: "main_label" %>
+      <div class="main_side">
+        <div class="clearFix">
+          <%= form.label :programming ,"Language:Level" , class:"pros_label"%>
+          <%= form.text_field :programming , value:@applicant.programming== " : " ? "-" : @applicant.programming , readonly:"true" %>
         </div>
       </div>
-      <%# Language Skill %>
-      <div class="form-group clearFix foreignLang">
-        <%= form.label :languageSkill ,"Language Skill", class: "main_label"%>
-        <div class="main_side">
-          <%# English %>
-          <div>
-            <%= form.label :english , "English"%>
-            <%= form.text_field :english ,  value:@applicant[:english].empty? ? "-" : @applicant[:english] , readonly:"true"%>
-          </div>
-          <%# Japan %>
-          <div>
-            <%= form.label :japanese , "Japan"%>
-            <%= form.text_field :japanese,  value:@applicant[:japanese].empty? ? "-" : @applicant[:japanese] , readonly:"true" %>
-          </div>
-          <%# Other %>
-          <div>
-            <%= form.label :other , "Other"%>
-            <%= form.text_field :other, value:@applicant[:other].empty? ? "-" : @applicant[:other] , readonly:"true" %>
-          </div>
+    </div>
+    <%# Language Skill %>
+    <div class="form-group clearFix foreignLang">
+      <%= form.label :languageSkill ,"Language Skill", class: "main_label"%>
+      <div class="main_side">
+        <%# English %>
+        <div>
+          <%= form.label :english , "English"%>
+          <%= form.text_field :english ,  value:@applicant.english.empty? ? "-" : @applicant.english , readonly:"true"%>
+        </div>
+        <%# Japan %>
+        <div>
+          <%= form.label :japanese , "Japan"%>
+          <%= form.text_field :japanese,  value:@applicant.japanese.empty? ? "-" : @applicant.japanese , readonly:"true" %>
+        </div>
+        <%# Other %>
+        <div>
+          <%= form.label :other , "Other"%>
+          <%= form.text_field :other, value:@applicant.other.empty? ? "-" : @applicant.other , readonly:"true" %>
         </div>
       </div>
     </div>
   </div>
-
   <%# Experience %>
   <div class="sec view">
     <h3>Experience</h3>
-      <%# Internship Info %>
-      <div class="form-group clearFix">
-        <%= form.label :internship_info ,"Internship Info" , class:"main_label"%>
-        <div class="main_side">
-          <%= form.text_field :internship_info, class:"wd_full" , value:@applicant[:internship_info].empty? ? "-" : @applicant[:internship_info] , readonly:"true" %>
-        </div>
-        
+    <%# Internship Info %>
+    <div class="form-group clearFix">
+      <%= form.label :internship_info ,"Internship Info" , class:"main_label"%>
+      <div class="main_side">
+        <%= form.text_field :internship_info, class:"wd_full" , value:@applicant.internship_info.empty? ? "-" : @applicant.internship_info , readonly:"true" %>
       </div>
-      <%# Job Experience %>
-      <div class="form-group clearFix">
-        <%= form.label :job_experience ,"Job Experience" , class:"main_label"%>
-        <div class="main_side">
-          <%= form.text_field :job_experience, class:"wd_full" , value:@applicant[:job_experience].empty? ? "-" : @applicant[:job_experience] , readonly:"true" %>
-        </div>
-        
-      </div>
-      <%# Total Experinence Year %>
-      <div class="form-group clearFix">
-        <%= form.label :total_exp_year ,"Total Experience Year" , class:"main_label"%>
-        <div class="main_side">
-          <%= form.text_field :total_exp_year, class:"wd_full" , value:@applicant[:total_exp_year] == nil ? "0" : @applicant[:total_exp_year] , readonly:"true" %>
-        </div>
-        
-      </div>
-      
     </div>
-   <%# button %>
+    <%# Job Experience %>
+    <div class="form-group clearFix">
+      <%= form.label :job_experience ,"Job Experience" , class:"main_label"%>
+      <div class="main_side">
+        <%= form.text_field :job_experience, class:"wd_full" , value:@applicant.job_experience.empty? ? "-" : @applicant.job_experience , readonly:"true" %>
+      </div>
+    </div>
+    <%# Total Experinence Year %>
+    <div class="form-group clearFix">
+      <%= form.label :total_exp_year ,"Total Experience Year" , class:"main_label"%>
+      <div class="main_side">
+        <%= form.text_field :total_exp_year, class:"wd_full" , value:@applicant.total_exp_year == nil ? "0" : @applicant.total_exp_year , readonly:"true" %>
+      </div>
+    </div>
+  </div>
+  <%# button %>
   <div class="btn-group sec">
     <%= link_to "Cancel", root_path, class:"cancelBtn" %>
     <%= form.submit "Confirm", :type => "submit"%>

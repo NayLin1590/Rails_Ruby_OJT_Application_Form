@@ -2,9 +2,9 @@ class CreateApplicants < ActiveRecord::Migration[6.1]
   def change
     create_table :applicants do |t|
       t.string :name, varchar: 100, null: false
-      t.string :profile_photo, varchar: 250, null: false
+      t.string :profile_photo, varchar: 250
       t.timestamp :dob
-      t.bigint :phone_no1, varchar: 30, null:false
+      t.string :phone_no1, varchar: 30, null:false
       t.string :phone_no2, varchar: 30
       t.string :email, varchar: 100
       t.string :current_address, varchar: 255, null: false

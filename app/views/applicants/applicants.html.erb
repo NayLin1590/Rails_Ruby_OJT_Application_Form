@@ -6,7 +6,10 @@
     <h3>Personal Information</h3>
     <%# Name %>
     <div class="form-group clearFix">
-      <%= form.label :name,  "Name" , class: "main_label"%>
+      <div class="main_label">
+        <%= form.label :name,  "Name "%>
+        <span class="need">*</span>
+      </div>
       <div class="main_side">
         <%= form.text_field :name , class: "wd_full" %>
         <% if @applicant.errors[:name].any? %>
@@ -21,14 +24,17 @@
         <%= form.label :profile_photo, "Upload Profile" , class:"upload_profile_btn"%>
         <span class="img_name"></span>
         <%= form.file_field :profile_photo, class:"profile_upload" , accept:'image/*'%>
-        <% if @applicant.errors.any? %>
-        <div class="error_msg">please select profile photo again!</div>
-        <% end %>  
+        <% if flash[:img_notice] %>
+        <div class="error_msg"><%=flash[:img_notice] %></div>
+        <% end %>
       </div>
     </div>
     <%# dob %>
     <div class="form-group clearFix">
-      <%= form.label :dob, "Date Of Birth", class: "main_label"%>
+      <div class="main_label">
+        <%= form.label :dob, "Date Of Birth"%>
+        <span class="need">*</span>
+      </div>
       <div class="main_side">
         <%= form.date_field :dob %>
         <% if @applicant.errors[:dob].any? %>
@@ -38,7 +44,10 @@
     </div>
     <%# Phone %>
     <div class="form-group clearFix">
-      <%= form.label :phone_no1, "Phone", class: "main_label"%>
+      <div class="main_label">
+        <%= form.label :phone_no1, "Phone"%>
+        <span class="need">*</span>
+      </div>
       <div class="main_side">
         <%# phone add and remove %>
         <div class="phone_wrapper">
@@ -51,23 +60,37 @@
           <% if @applicant.errors[:phone_no1].any? %>
           <div class="error_msg"> Phone <%= @applicant.errors[:phone_no1].to_sentence  %></div>
           <% end %>
+          <div class="phone_item no2 clearFix">
+            <%= form.number_field :phone_no2 , class: "phone"%>
+            <a href="javascript:void(0);" class="remove_phone phone_icon" title="Add field">
+              <i class="fas fa-minus"></i>
+            </a>
+          </div>
+          <% if @applicant.errors[:phone_no2].any? %>
+          <div class="error_msg"> Phone <%= @applicant.errors[:phone_no2].to_sentence  %></div>
+          <% end %>
         </div>
       </div>
     </div>
     <%# Email %>
     <div class="form-group clearFix">
-      <%= form.label :email, "Email", class: "main_label"%>
+      <div class="main_label">
+        <%= form.label :email, "Email"%>
+        <span class="need">*</span>
+      </div>
       <div class="main_side">
         <%= form.email_field :email, class: "wd_full" %>
         <% if @applicant.errors[:email].any? %>
         <div class="error_msg"> Email <%= @applicant.errors[:email].to_sentence  %></div>
         <% end %>
       </div>
-
     </div>
     <%# Current Address %>
     <div class="form-group clearFix">
-      <%= form.label :current_address, "Current Address", class: "main_label"%>
+      <div class="main_label">
+        <%= form.label :current_address, "Current Address"%>
+        <span class="need">*</span>
+      </div>
       <div class="main_side">
         <%= form.text_area :current_address, class: "wd_full" %>
         <% if @applicant.errors[:current_address].any? %>
@@ -81,111 +104,190 @@
       <div class="main_side">
         <%= form.text_area :hometown_address, class: "wd_full" %>
         <% if @applicant.errors[:hometown_address].any? %>
-        <div class="error_msg">please fill Hometown Address<%= @applicant.errors[:hometownAddress].to_sentence  %></div>
+        <div class="error_msg"><%= @applicant.errors[:hometown_address].to_sentence  %></div>
         <% end %>
       </div>
     </div>
-  </div>
+    <%# Education Background %>
+    <div class="sec">
+      <h3>Education Background</h3>
+      <div>
+        <%# Education Level %>
+        <div class="form-group clearFix">
+          <%= form.label :eduLevel, "Education Level", class: "main_label" %>
+          <div class="main_side">
 
-  <%# Education Background %>
-  <div class="sec">
-    <h3>Education Background</h3>
-    <div>
-      <%# Education Level %>
-      <div class="form-group clearFix">
-        <%= form.label :eduLevel, "Education Level", class: "main_label" %>
-        <div class="main_side">
-
-          <%# Bachelor %>
-          <div class="edu_group">
-            <%= form.label :bachelor ,"Bachelor", class:"edu_label"%>
-            <div class="edu clearFix">
-              <div class="edu_item">
-                <%= form.label :b_university ,"University"%>
-                <%= form.text_field :b_university %>
+            <%# Bachelor %>
+            <div class="edu_group">
+              <%= form.label :bachelor ,"Bachelor", class:"edu_label"%>
+              <div class="edu clearFix">
+                <div class="edu_item">
+                  <%= form.label :bachelor_university ,"University"%><span class="need">*</span>
+                  <%= form.text_field :bachelor_university %>
+                  <% if @applicant.errors[:bachelor_university].any? %>
+                  <div class="error_msg"><%= @applicant.errors[:bachelor_university].to_sentence  %></div>
+                  <% end %>
+                </div>
+                <div class="edu_item">
+                  <%= form.label :bachelor_year ,"Year"%>
+                  <%= form.text_field :bachelor_year %>
+                  <% if @applicant.errors[:bachelor_year].any? %>
+                  <div class="error_msg"><%= @applicant.errors[:bachelor_year].to_sentence  %></div>
+                  <% end %>
+                </div>
+                <div class="edu_item">
+                  <%= form.label :bachelor_degree ,"Degree"%>
+                  <%= form.text_field :bachelor_degree %>
+                  <% if @applicant.errors[:bachelor_degree].any? %>
+                  <div class="error_msg"><%= @applicant.errors[:bachelor_degree].to_sentence  %></div>
+                  <% end %>
+                </div>
               </div>
-              <div class="edu_item">
-                <%= form.label :b_year ,"Year"%>
-                <%= form.text_field :b_year %>
-              </div>
-              <div class="edu_item">
-                <%= form.label :b_degree ,"Degree"%>
-                <%= form.text_field :b_degree %>
+            </div>
+            <%# Master %>
+            <div class="edu_group">
+              <%= form.label :master ,"Master" , class:"edu_label"%>
+              <div class="edu clearFix">
+                <div class="edu_item">
+                  <%= form.label :master_university ,"University"%>
+                  <%= form.text_field :master_university %>
+                  <% if @applicant.errors[:master_university].any? %>
+                  <div class="error_msg"><%= @applicant.errors[:master_university].to_sentence  %></div>
+                  <% end %>
+                </div>
+                <div class="edu_item">
+                  <%= form.label :master_year ,"Year"%>
+                  <%= form.text_field :master_year %>
+                  <% if @applicant.errors[:master_year].any? %>
+                  <div class="error_msg"><%= @applicant.errors[:master_year].to_sentence  %></div>
+                  <% end %>
+                </div>
+                <div class="edu_item">
+                  <%= form.label :master_degree ,"Degree"%>
+                  <%= form.text_field :master_degree %>
+                  <% if @applicant.errors[:master_degree].any? %>
+                  <div class="error_msg"><%= @applicant.errors[:master_degree].to_sentence  %></div>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
-          <%# Master %>
-          <div class="edu_group">
-            <%= form.label :master ,"Master" , class:"edu_label"%>
-            <div class="edu clearFix">
-              <div class="edu_item">
-                <%= form.label :m_university ,"University"%>
-                <%= form.text_field :m_university %>
-              </div>
-              <div class="edu_item">
-                <%= form.label :m_year ,"Year"%>
-                <%= form.text_field :m_year %>
-              </div>
-              <div class="edu_item">
-                <%= form.label :m_degree ,"Degree"%>
-                <%= form.text_field :m_degree %>
-              </div>
+        </div>
+        <%# Diploma Name %>
+        <div class="form-group clearFix">
+          <%= form.label :diploma_name , "Diploma Name", class: "main_label"%>
+          <div class="main_side">
+            <%= form.text_field :diploma_name , class: "wd_full"%>
+          </div>
+        </div>
+        <%# Other Certificates %>
+        <div class="form-group clearFix">
+          <%= form.label :certificate ,"Other Certificates", class: "main_label"%>
+          <div class="main_side">
+            <%= form.text_field :certificate , class: "wd_full" %>
+            <% if @applicant.errors[:certificate].any? %>
+            <div class="error_msg"><%= @applicant.errors[:certificate].to_sentence  %></div>
+            <% end %>
+          </div>
+        </div>
+        <%# Programming Skill %>
+        <div class="form-group clearFix">
+          <%= form.label :programmingskill , "Programming Skill", class: "main_label" %>
+          <div class="main_side">
+            <div class="clearFix">
+              <%= form.label :plang ,"Language" , class:"pros_label"%>
+              <%= form.label :plevel ,"Level" , class:"pros_label"%>
             </div>
-          </div>
-        </div>
-      </div>
-      <%# Diploma Name %>
-      <div class="form-group clearFix">
-        <%= form.label :diplomaName , "Diploma Name", class: "main_label"%>
-        <div class="main_side">
-          <%= form.text_field :diplomaName , class: "wd_full"%>
-        </div>
-
-      </div>
-      <%# Other Certificates %>
-      <div class="form-group clearFix">
-        <%= form.label :otherCerti ,"Other Certificates", class: "main_label"%>
-        <%= form.text_field :otherCerti , class: "main_side" %>
-      </div>
-      <%# Programming Skill %>
-      <div class="form-group clearFix">
-        <%= form.label :programmingskill , "Programming Skill", class: "main_label" %>
-        <div class="main_side">
-          <div class="clearFix">
-            <%= form.label :plang01 ,"Language" , class:"pros_label"%>
-            <%= form.label :plevel01 ,"Level" , class:"pros_label"%>
-          </div>
-
-          <div class="plang_wrapper">
-            <div class="plang_item clearFix">
-              <%= form.text_field "programming[][language]" , placeholder:"Ruby"%>
-              <%= form.text_field "programming[][level]", placeholder:"B"%>
-              <a href="javascript:void(0);" class="add_plang" title="Add field">
-                <%# <span class="pm_sign">+</span> %>
-                <i class="fas fa-plus"></i>
-              </a>
+            <div class="plang_wrapper">
+              <%if @progLangLev %>
+              <div class="plang_item clearFix">
+                <%= form.text_field "programming[][language]" , value:@progLangLev[0][:language] %>
+                <%= form.text_field "programming[][level]",  value:@progLangLev[0][:level] %>
+                <a href="javascript:void(0);" class="add_plang" title="Add field">
+                  <i class="fas fa-plus"></i>
+                </a>
+              </div>
+              <% if @progLangLev[1] %>
+              <div class="plang_item clearFix">
+                <%= form.text_field "programming[][language]" , value:@progLangLev[1][:language] %>
+                <%= form.text_field "programming[][level]",  value:@progLangLev[1][:level] %>
+                <a href="javascript:void(0);" class="remove_plang" title="Add field">
+                  <i class="fas fa-minus"></i>
+                </a>
+              </div>
+              <% end %>
+              <% if @progLangLev[2] %>
+              <div class="plang_item clearFix">
+                <%= form.text_field "programming[][language]" , value:@progLangLev[2][:language] %>
+                <%= form.text_field "programming[][level]",  value:@progLangLev[2][:level] %>
+                <a href="javascript:void(0);" class="remove_plang" title="Add field">
+                  <i class="fas fa-minus"></i>
+                </a>
+              </div>
+              <% end %>
+              <% if @progLangLev[3] %>
+              <div class="plang_item clearFix">
+                <%= form.text_field "programming[][language]" , value:@progLangLev[3][:language] %>
+                <%= form.text_field "programming[][level]",  value:@progLangLev[3][:level] %>
+                <a href="javascript:void(0);" class="remove_plang" title="Add field">
+                  <i class="fas fa-minus"></i>
+                </a>
+              </div>
+              <% end %>
+              <% if @progLangLev[4] %>
+              <div class="plang_item clearFix">
+                <%= form.text_field "programming[][language]" , value:@progLangLev[4][:language] %>
+                <%= form.text_field "programming[][level]",  value:@progLangLev[4][:level] %>
+                <a href="javascript:void(0);" class="remove_plang" title="Add field">
+                  <i class="fas fa-minus"></i>
+                </a>
+              </div>
+              <% end %>
+              <% if @applicant.errors[:programming].any? %>
+              <div class="error_msg">programming language or level <%= @applicant.errors[:programming].to_sentence  %>
+              </div>
+              <% end %>
+              <% else %>
+              <div class="plang_item clearFix">
+                <%= form.text_field "programming[][language]" , placeholder:"Ruby"%>
+                <%= form.text_field "programming[][level]", placeholder:"B"%>
+                <a href="javascript:void(0);" class="add_plang" title="Add field">
+                  <i class="fas fa-plus"></i>
+                </a>
+              </div>
+              <% end %>
             </div>
+
           </div>
         </div>
-      </div>
-      <%# Language Skill %>
-      <div class="form-group clearFix foreignLang">
-        <%= form.label :languageSkill ,"Language Skill", class: "main_label"%>
-        <div class="main_side">
-          <%# English %>
-          <div>
-            <%= form.label :english , "English"%>
-            <%= form.text_field :english , placeholder:"Level"%>
-          </div>
-          <%# Japan %>
-          <div>
-            <%= form.label :japan , "Japan"%>
-            <%= form.text_field :japan, placeholder:"Level"%>
-          </div>
-          <%# Other %>
-          <div>
-            <%= form.label :other , "Other"%>
-            <%= form.text_field :other, placeholder:"Level"%>
+        <%# Language Skill %>
+        <div class="form-group clearFix foreignLang">
+          <%= form.label :languageSkill ,"Language Skill", class: "main_label"%>
+          <div class="main_side">
+            <%# English %>
+            <div>
+              <%= form.label :english , "English"%>
+              <%= form.text_field :english , placeholder:"Level"%>
+              <% if @applicant.errors[:english].any? %>
+              <div class="error_msg"><%= @applicant.errors[:english].to_sentence  %></div>
+              <% end %>
+            </div>
+            <%# Japan %>
+            <div>
+              <%= form.label :japanese , "Japan"%>
+              <%= form.text_field :japanese, placeholder:"Level"%>
+              <% if @applicant.errors[:japanese].any? %>
+              <div class="error_msg"><%= @applicant.errors[:japanese].to_sentence  %></div>
+              <% end %>
+            </div>
+            <%# Other %>
+            <div>
+              <%= form.label :other , "Other"%>
+              <%= form.text_field :other, placeholder:"Level"%>
+              <% if @applicant.errors[:other].any? %>
+              <div class="error_msg"><%= @applicant.errors[:other].to_sentence  %></div>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
@@ -198,31 +300,38 @@
     <div class="form-group clearFix">
       <%= form.label :hasjobexp ,"Has Job Experience" , class:"main_label"%>
       <div class="main_side">
-      <% if @hasjobexp == 1 %>
-        <%= form.check_box :hasjobexp , class:" has_job_exp" , checked:"checked"%>
-      <% else %>
+        <% if @hasjobexp == 1 %>
+        <%= form.check_box :hasjobexp , class:" has_job_exp test"%>
+        <% else %>
         <%= form.check_box :hasjobexp , class:" has_job_exp"%>
-      <% end %>
-      
+        <% end %>
       </div>
     </div>
     <div class="jobexp">
       <%# Internship Info %>
       <div class="form-group clearFix">
-        <%= form.label :intern_info ,"Internship Info" , class:"main_label"%>
-        <%= form.text_area :intern_info, class:"main_side"%>
+        <%= form.label :internship_info ,"Internship Info" , class:"main_label"%>
+        <div class="main_side">
+          <%= form.text_area :internship_info, class:"wd_full"%>
+        </div>
       </div>
       <%# Job Experience %>
       <div class="form-group clearFix">
-        <%= form.label :job_exp ,"Job Experience" , class:"main_label"%>
-        <%= form.text_area :job_exp, class:"main_side"%>
+        <%= form.label :job_experience ,"Job Experience" , class:"main_label"%>
+        <div class="main_side">
+          <%= form.text_area :job_experience , class:"wd_full"%>
+        </div>
       </div>
       <%# Total Experinence Year %>
       <div class="form-group clearFix">
         <%= form.label :total_exp_year ,"Total Experience Year" , class:"main_label"%>
-        <%= form.number_field :total_exp_year, class:"main_side"%>
+        <div class="main_side">
+          <%= form.number_field :total_exp_year , class:"wd_full testing"%>
+          <% if @applicant.errors[:total_exp_year].any? %>
+          <div class="error_msg"> <%= @applicant.errors[:total_exp_year].to_sentence  %></div>
+          <% end %>
+        </div>
       </div>
-
     </div>
   </div>
   <%# button %>
@@ -233,6 +342,3 @@
   <% end %>
 </div>
 <%= javascript_pack_tag 'user/app' %>
-
-
-
