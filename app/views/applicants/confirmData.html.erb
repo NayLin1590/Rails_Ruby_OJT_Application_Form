@@ -161,14 +161,14 @@
     <div class="form-group clearFix">
       <%= form.label :internship_info ,"Internship Info" , class:"main_label"%>
       <div class="main_side">
-        <%= form.text_field :internship_info, class:"wd_full" , value:@applicant.internship_info.empty? ? "-" : @applicant.internship_info , readonly:"true" %>
+        <%= form.text_area :internship_info, class:"wd_full" , value:@applicant.internship_info.empty? ? "-" : @applicant.internship_info , readonly:"true" %>
       </div>
     </div>
     <%# Job Experience %>
     <div class="form-group clearFix">
       <%= form.label :job_experience ,"Job Experience" , class:"main_label"%>
       <div class="main_side">
-        <%= form.text_field :job_experience, class:"wd_full" , value:@applicant.job_experience.empty? ? "-" : @applicant.job_experience , readonly:"true" %>
+        <%= form.text_area :job_experience, class:"wd_full" , value:@applicant.job_experience.empty? ? "-" : @applicant.job_experience , readonly:"true" %>
       </div>
     </div>
     <%# Total Experinence Year %>

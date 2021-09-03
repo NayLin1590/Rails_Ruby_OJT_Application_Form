@@ -61,14 +61,14 @@
           <div class="error_msg"> Phone <%= @applicant.errors[:phone_no1].to_sentence  %></div>
           <% end %>
           <div class="phone_item no2 clearFix">
-            <%= form.number_field :phone_no2 , class: "phone"%>
+            <%= form.number_field :phone_no2 , class: "phone sec_ph"%>
             <a href="javascript:void(0);" class="remove_phone phone_icon" title="Add field">
               <i class="fas fa-minus"></i>
             </a>
           </div>
-          <% if @applicant.errors[:phone_no2].any? %>
-          <div class="error_msg"> Phone <%= @applicant.errors[:phone_no2].to_sentence  %></div>
-          <% end %>
+           <% if @applicant.errors[:phone_no2].any? %>
+            <div class="error_msg"> Phone <%= @applicant.errors[:phone_no2].to_sentence  %></div>
+            <% end %>
         </div>
       </div>
     </div>
@@ -300,11 +300,7 @@
     <div class="form-group clearFix">
       <%= form.label :hasjobexp ,"Has Job Experience" , class:"main_label"%>
       <div class="main_side">
-        <% if @hasjobexp == 1 %>
-        <%= form.check_box :hasjobexp , class:" has_job_exp test"%>
-        <% else %>
         <%= form.check_box :hasjobexp , class:" has_job_exp"%>
-        <% end %>
       </div>
     </div>
     <div class="jobexp">

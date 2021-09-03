@@ -17,7 +17,9 @@ $(document).ready(function () {
     $(phoneWrapper).on('click', '.remove_phone', function (e) {
         e.preventDefault();
         localStorage.removeItem("phone");
+        $(".sec_ph").val("");
         no2.css("display", "none");
+        
     });
 
     //   Programming Language Field

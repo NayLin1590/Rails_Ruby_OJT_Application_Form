@@ -41,7 +41,7 @@ class ApplicantsController < ApplicationController
     @applicant = Applicant.new(article_params)
     @is_save_applicant = ApplicantService.createApplicant(@applicant)
     if @is_save_applicant
-      render html: '<h2 style="text-align:center; margin-top:15px;">You Are Successfully! Thank U</h2>'.html_safe
+      render html: '<h2 style="text-align:center; margin-top:15px;">You Are Successfully! Thank <a href=\'applicants/applicants\' >Back</a></h2>'.html_safe
     else
       render :applicants
     end
